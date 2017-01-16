@@ -1,0 +1,44 @@
+﻿@model WebApplication2.Models.GoalItem
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GoalCreation</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <label>Name for the your Goal: </label>
+            @Html.TextBoxFor(x => x.Name, new {placeholder = "My Goal"})<br/>
+            <label>Enter the Goal number: </label>
+            @Html.TextBoxFor(x => x.GoalState, new {placeholder = "2500"})<br/>
+            <label>Select the unit of measure: </label>
+            @Html.DropDownListFor(x => x.UnitOfMeasure, new[]
+            {
+                new SelectListItem() {Text = "Kilometers", Value = "km"},
+                new SelectListItem() {Text = "Money $", Value = "money"},
+                new SelectListItem() {Text = "Coding days", Value = "day"}
+            })<br/>
+            <label>Enter the Deadline date: </label>
+            //@Html.TextBoxFor(x => x.DeadLine, "{0:dd/MM/yyyy}", new {placeholder = "dd/mm/yyyy"})<br/>
+            @Html.TextBoxFor(x => x.DeadLine, "{0:dd/MM/yyyy}")<br/>
+
+            <br/>
+            <label>There are some additional properties. You can skip them.</label><br/>
+            <label>Current state of your goal. Possible, you have done some steps to your goal: </label>
+            @Html.TextBoxFor(x=>x.CurrentState, new {placeholder = "0.0"})<br/>
+            <label>Date when you plan to start your moving to the your goal: </label>
+            @Html.TextBoxFor(x=>x.StartDate, "{0:dd/MM/yyyy}", new {placeholder = DateTime.Now.ToString("d")})
+
+            <input type="submit" value="Add goal"/>
+        }
+    </div>
+</body>
+</html>
