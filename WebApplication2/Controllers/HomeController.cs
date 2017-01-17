@@ -24,6 +24,11 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult GoalCreation(GoalItem model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             DataProvider provider = new DataProvider();
             provider.AddGoalToList(model);
 

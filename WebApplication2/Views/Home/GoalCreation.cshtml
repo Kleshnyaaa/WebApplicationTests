@@ -1,4 +1,5 @@
-﻿@model WebApplication2.Models.GoalItem
+﻿@using System.Web.UI.WebControls
+@model WebApplication2.Models.GoalItem
 
 @{
     Layout = null;
@@ -15,6 +16,7 @@
     <div>
         @using (Html.BeginForm())
         {
+            @Html.ValidationSummary()
             <label>Name for the your Goal: </label>
             @Html.TextBoxFor(x => x.Name, new {placeholder = "My Goal"})<br/>
             <label>Enter the Goal number: </label>
@@ -28,14 +30,14 @@
             })<br/>
             <label>Enter the Deadline date: </label>
             //@Html.TextBoxFor(x => x.DeadLine, "{0:dd/MM/yyyy}", new {placeholder = "dd/mm/yyyy"})<br/>
-            @Html.TextBoxFor(x => x.DeadLine, "{0:dd/MM/yyyy}")<br/>
+            @Html.TextBoxFor(x => x.DeadLine, "{0:MM/dd/yyyy}", new {placeholder = DateTime.Now.ToString("d")})<br/>
 
             <br/>
             <label>There are some additional properties. You can skip them.</label><br/>
             <label>Current state of your goal. Possible, you have done some steps to your goal: </label>
             @Html.TextBoxFor(x=>x.CurrentState, new {placeholder = "0.0"})<br/>
             <label>Date when you plan to start your moving to the your goal: </label>
-            @Html.TextBoxFor(x=>x.StartDate, "{0:dd/MM/yyyy}", new {placeholder = DateTime.Now.ToString("d")})
+            @Html.TextBoxFor(x=>x.StartDate, "{0:MM/dd/yyyy}", new {placeholder = DateTime.Now.ToString("d")})
 
             <input type="submit" value="Add goal"/>
         }
